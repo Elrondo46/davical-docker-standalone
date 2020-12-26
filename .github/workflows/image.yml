@@ -37,4 +37,4 @@ jobs:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           tags: |
-            tuxnvape/davical-standalone:latest:latest
+            tuxnvape/davical-standalone:latest
