@@ -1,7 +1,7 @@
 # DAViCal Standalone Docker
 Docker image for a complete [DAViCal](https://www.davical.org/) server (DAViCal + Apache2 + PostgreSQL) on Alpine Linux requires a separate PGSQL container (watch docker-compose).
 The repository on github.org contains example configuration files for DAViCal (as well as the Dockerfile to create the Docker image).
-It contains docker-compose config example
+It contains docker-compose config example.
 
 ### About DAViCal
 [DAViCal](https://www.davical.org/) is a server for shared calendars. It implements the [CalDAV protocol](https://wikipedia.org/wiki/CalDAV) and stores calendars in the [iCalendar format](https://wikipedia.org/wiki/ICalendar).
