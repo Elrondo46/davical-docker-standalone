@@ -19,7 +19,7 @@ chmod -R 755 /config
 chown root:apache /config/davical.php
 chmod u+rwx,g+rx /config/davical.php
 
-sleep 3
+sleep 10
 INITIALIZED_DB=$(PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -l | grep davical) 
 if [[ -z "$INITIALIZED_DB" ]] ; then
  PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c 'CREATE DATABASE davical;'
