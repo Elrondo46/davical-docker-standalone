@@ -1,11 +1,3 @@
-#Version 0.4
-#Davical + apache + postgres
-#---------------------------------------------------------------------
-#Default configuration: hostname: davical.example
-#                       user: admin
-#                       pass: 12345
-#---------------------------------------------------------------------
-
 FROM    alpine
 MAINTAINER https://github.com/Elrondo46
 
