@@ -20,7 +20,7 @@ services:
       PGSQL_ROOT_PASS: "davical"
       PASSDAVDB: "davical"
       DBHOST: "db"
-      ADMINDAVICALPASS: "example"
+      ADMINDAVICALPASS: "bite"
       LANG: "fr_FR.UTF-8"
       LC_ALL: "fr_FR.UTF-8"
       DAVICAL_LANG: "fr_FR"

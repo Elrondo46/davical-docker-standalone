@@ -19,7 +19,12 @@ chmod -R 755 /config
 chown root:apache /config/davical.php
 chmod u+rwx,g+rx /config/davical.php
 
-sleep 10
+#sleep 10
+DB_READY=$(PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/pg_isready -U postgres -h $DBHOST -d postgres)
+while [[ $DB_READY != 0 ]]; do
+ echo 'Waiting for database...'
+done
+ 
 INITIALIZED_DB=$(PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -l | grep davical) 
 if [[ -z "$INITIALIZED_DB" ]] ; then
  PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c 'CREATE DATABASE davical;'
@@ -46,7 +51,7 @@ else
 fi
 
 #UPDATE ALWAYS THE DATABASE
-sleep 3
+#sleep 3
 
 /usr/share/davical/dba/update-davical-database --dbname davical --dbuser davical_dba --dbhost $DBHOST --dbpass $PASSDAVDB --appuser davical_app --nopatch --owner davical_dba
 
