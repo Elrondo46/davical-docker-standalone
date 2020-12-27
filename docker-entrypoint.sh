@@ -20,7 +20,7 @@ chown root:apache /config/davical.php
 chmod u+rwx,g+rx /config/davical.php
 
 #sleep 10
-DB_READY=$(PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/pg_isready -U postgres -h $DBHOST -d postgres)
+DB_READY=$(/usr/bin/pg_isready -h $DBHOST)
 while [[ $DB_READY != 0 ]]; do
  echo 'Waiting for database...'
 done
