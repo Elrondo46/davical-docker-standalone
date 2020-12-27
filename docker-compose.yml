@@ -3,6 +3,8 @@ version: "3"
 services:
   db:
     image: postgres
+    volumes:
+      - pgsql_data:/var/lib/postgresql/data
     restart: always
     environment:
       POSTGRES_PASSWORD: "davical"
@@ -11,7 +13,6 @@ services:
     image: tuxnvape/davical-standalone
     volumes:
       - davical_config:/config
-      - pgsql_data:/var/lib/postgresql/data
     restart: always
     ports:
       - 80:80
