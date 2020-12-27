@@ -19,11 +19,12 @@ chmod -R 755 /config
 chown root:apache /config/davical.php
 chmod u+rwx,g+rx /config/davical.php
 
-sleep 10
-#DB_READY=$(/usr/bin/pg_isready -h $DBHOST)
-#while [[ $DB_READY != 0 ]]; do
-# echo 'Waiting for database...'
-#done
+#sleep 10
+exec /usr/bin/pg_isready -h $DBHOST
+DB_READY=$(echo $?)
+while [[ $DB_READY != 0 ]]; do
+ echo 'Waiting for database...'
+done
  
 INITIALIZED_DB=$(PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -l | grep davical) 
 if [[ -z "$INITIALIZED_DB" ]] ; then
