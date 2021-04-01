@@ -38,13 +38,13 @@ if [[ -z "$INITIALIZED_DB" ]] ; then
  PGPASSWORD=$PASSDAVDB /usr/bin/psql -qXAt -U davical_dba -h $DBHOST davical < /usr/share/davical/dba/davical.sql
  PGPASSWORD=$PASSDAVDB /usr/share/davical/dba/update-davical-database --dbname davical --dbuser davical_dba --dbhost $DBHOST --dbpass $PASSDAVDB --appuser davical_app --nopatch --owner davical_dba
  PGPASSWORD=$PASSDAVDB /usr/bin/psql -qXAt -U davical_dba -h $DBHOST davical < /usr/share/davical/dba/base-data.sql
- PGPASSWORD=$PASSDAVDB /usr/bin/psql -qX -U davical_dba -h $DBHOST -c "UPDATE usr SET password = '**$ADMINDAVICALPASS' WHERE user_no = 1;" davical
+ PGPASSWORD=$PASSDAVDB /usr/bin/psql -qX -U davical_dba -h $DBHOST -c "UPDATE usr SET password = '**$ADMINDAVICALPASS' WHERE user_no = 1;"
 else
  PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c "ALTER USER davical_dba WITH PASSWORD '$PASSDAVDB';"
  PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c "ALTER USER davical_app WITH PASSWORD '$PASSDAVDB';"
  PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c 'GRANT ALL PRIVILEGES ON DATABASE davical TO davical_dba;'
  PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c 'GRANT ALL PRIVILEGES ON DATABASE davical TO davical_app;'
- PGPASSWORD=$PASSDAVDB /usr/bin/psql -qX -U davical_dba -h $DBHOST -c "UPDATE usr SET password = '**$ADMINDAVICALPASS' WHERE user_no = 1;" davical
+ PGPASSWORD=$PASSDAVDB /usr/bin/psql -qX -U davical_dba -h $DBHOST -c "UPDATE usr SET password = '**$ADMINDAVICALPASS' WHERE user_no = 1;"
 fi
 
 #UPDATE ALWAYS THE DATABASE
