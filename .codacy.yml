@@ -1,0 +1,5 @@
+---
+exclude_paths:
+  - "CODE_OF_CONDUCT.md"
+  - "CONTRIBUTING.md"
+  - ".github/ISSUE_TEMPLATE/**" 
