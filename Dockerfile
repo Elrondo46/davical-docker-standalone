@@ -1,4 +1,4 @@
-FROM    alpine:latest
+FROM    alpine:edge
 
 ENV     TIME_ZONE "Europe/Paris"
 ENV     HOST_NAME "davical.example"

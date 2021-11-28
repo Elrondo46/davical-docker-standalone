@@ -9,12 +9,12 @@ It contains docker-compose config example.
 List of supported clients: Mozilla Thunderbird/Lightning, Evolution, Mulberry, Chandler, iCal, ...
 
 **Features**
-  >  -  DAViCal is Free Software licensed under the General Public License.
-  >  -  uses an PGSQL database for storage of event data
-  >  -  supports backward-compatible access via WebDAV in read-only or read-write mode (not recommended)
-  >  -  is committed to inter-operation with the widest possible CalDAV client software.
+>-  DAViCal is Free Software licensed under the General Public License.
+>-  uses an PGSQL database for storage of event data
+>-  supports backward-compatible access via WebDAV in read-only or read-write mode (not recommended)
+>-  is committed to inter-operation with the widest possible CalDAV client software.
 
-  >DAViCal supports basic delegation of read/write access among calendar users, multiple users or clients reading and writing the same calendar entries over time, and scheduling of meetings with free/busy time displayed.
+  >  DAViCal supports basic delegation of read/write access among calendar users, multiple users or clients reading and writing the same calendar entries over time, and scheduling of meetings with free/busy time displayed.
 (*https://www.davical.org/*)
 
 ## Settings Added
