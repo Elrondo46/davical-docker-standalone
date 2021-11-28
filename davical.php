@@ -4,7 +4,7 @@
 *            These apply everywhere and will need setting                  *
 *                                                                          *
 ***************************************************************************/
-$c->domain_name = getenv('HOST_NAME')?:'davical.example';
+$c->domain_name = $_ENV['HOST_NAME'];
 $c->sysabbr = 'davical';
 
 /****************************
@@ -387,7 +387,8 @@ $c->default_privileges = array('all');
 * People interested in providing new translations are directed to the Wiki:
 *   http://wiki.davical.org/w/Translating_DAViCal
 */
-$c->default_locale = getenv("DAVICAL_LANG")?:'en_US';
+// $c->default_locale = getenv("DAVICAL_LANG")?:'en_US';
+$c->default_locale = $_ENV['DB_NAME'];
 
 /**
 * Default will be $_SERVER['SERVER_NAME'];
