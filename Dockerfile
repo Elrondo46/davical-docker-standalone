@@ -1,5 +1,4 @@
-FROM    alpine
-MAINTAINER https://github.com/Elrondo46
+FROM    alpine:latest
 
 ENV     TIME_ZONE "Europe/Paris"
 ENV     HOST_NAME "davical.example"
