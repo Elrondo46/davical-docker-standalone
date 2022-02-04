@@ -52,7 +52,7 @@ jobs:
           tags: |
             tuxnvape/davical-standalone:7-1.1.10
             
-      - name: Build and push php8 version
+      - name: Build and push php81 version
         uses: docker/build-push-action@v2
         with:
           context: .
