@@ -24,7 +24,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v1
         with:
-          registry: docker.io
+          registry: darkregistry.infrarinox.net
           username: ${{ secrets.ESTE_USER }}
           password: ${{ secrets.ESTE_PWD }}
             
