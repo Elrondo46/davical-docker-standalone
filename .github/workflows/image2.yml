@@ -25,7 +25,7 @@ jobs:
         with:
           image: tuxnvape/docker-standalone
           tags: latest
-          archs: amd64, arm64
+          archs: arm64
           dockerfiles: |
             ./Dockerfile.php81
             
@@ -33,8 +33,8 @@ jobs:
         id: push-to-darkregistry
         uses: redhat-actions/push-to-registry@v2
         with:
-          image: ${{ steps.build-image.outputs.image }}
-          tags: ${{ steps.build-image.outputs.tags }}
+          image: tuxnvape/docker-standalone
+          tags: latest
           registry: ${{ env.IMAGE_REGISTRY }}
           username: ${{ secrets.ESTE_USER }}
           password: ${{ secrets.ESTE_PWD }}
