@@ -18,26 +18,6 @@ jobs:
         
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-        
-      - name: Build image 
-        id: build-image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          image: tuxnvape/docker-standalone
-          tags: latest
-          archs: arm64
-          dockerfiles: |
-            ./Dockerfile.php81
-            
-      - name: Push To Darkregistry
-        id: push-to-darkregistry
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: tuxnvape/docker-standalone
-          tags: latest
-          registry: ${{ env.IMAGE_REGISTRY }}
-          username: ${{ secrets.ESTE_USER }}
-          password: ${{ secrets.ESTE_PWD }}
           
       - name: Build image 
         id: build2-image
@@ -48,13 +28,21 @@ jobs:
           archs: amd64
           dockerfiles: |
             ./Dockerfile.php81
-            
-      - name: Push To Darkregistry
-        id: push-to-darkregistry2
-        uses: redhat-actions/push-to-registry@v2
+          
+      - name: Login to docker hub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
         with:
-          image: tuxnvape/docker-standalone
-          tags: latest
-          registry: ${{ env.IMAGE_REGISTRY }}
+          registry: darkregistry.infrarinox.net
           username: ${{ secrets.ESTE_USER }}
           password: ${{ secrets.ESTE_PWD }}
+          
+      - name: Build and push php8 version
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile.php81
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: |
+            tuxnvape/davical-standalone:latest
