@@ -25,12 +25,32 @@ jobs:
         with:
           image: tuxnvape/docker-standalone
           tags: latest
-          archs: arm64, amd64
+          archs: arm64
           dockerfiles: |
             ./Dockerfile.php81
             
       - name: Push To Darkregistry
         id: push-to-darkregistry
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: tuxnvape/docker-standalone
+          tags: latest
+          registry: ${{ env.IMAGE_REGISTRY }}
+          username: ${{ secrets.ESTE_USER }}
+          password: ${{ secrets.ESTE_PWD }}
+          
+      - name: Build image 
+        id: build2-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: tuxnvape/docker-standalone
+          tags: latest
+          archs: amd64
+          dockerfiles: |
+            ./Dockerfile.php81
+            
+      - name: Push To Darkregistry
+        id: push-to-darkregistry2
         uses: redhat-actions/push-to-registry@v2
         with:
           image: tuxnvape/docker-standalone
