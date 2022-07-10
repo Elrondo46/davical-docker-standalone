@@ -1,0 +1,40 @@
+name: Multiarch build
+
+on:
+  push:
+      
+env:
+  IMAGE_NAME: tuxnvape/davical-standalone
+  IMAGE_TAG: latest
+  IMAGE_REGISTRY: darkregistry.infrarinox.net
+
+jobs:
+  build:
+    name: Build and push multi-arch image
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        
+      - name: Build image 
+        id: build-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: tuxnvape/docker-standalone
+          tags: latest
+          archs: amd64, arm64
+          dockerfiles: |
+            ./Dockerfile.php81
+            
+      - name: Push To Darkregistry
+        id: push-to-darkregistry
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: ${{ env.IMAGE_REGISTRY }}
+          username: ${{ secrets.ESTE_USER }}
+          password: ${{ secrets.ESTE_PWD }}
