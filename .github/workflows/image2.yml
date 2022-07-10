@@ -10,24 +10,19 @@ env:
 
 jobs:
   build:
-    name: Build and push multi-arch image
-    runs-on: ubuntu-20.04
-    
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        
+      - name: checkout code
+        uses: actions/checkout@v2
+      
+      - name: install buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+      
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-          
-      - name: Build image 
-        id: build2-image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          image: tuxnvape/docker-standalone
-          tags: latest
-          archs: amd64
-          dockerfiles: |
-            ./Dockerfile.php81
           
       - name: Login to docker hub
         if: github.event_name != 'pull_request'
