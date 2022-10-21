@@ -60,9 +60,10 @@ RUN     apk --update add \
         perl-dbi \
         wget \
         git \
-        iputils \
+        iputils 
 
-        && git clone https://gitlab.com/davical-project/awl.git /usr/share/awl/ \
+ 
+ RUN    git clone https://gitlab.com/davical-project/awl.git /usr/share/awl/ \
         && git clone https://gitlab.com/davical-project/davical.git /usr/share/davical/ \
         && rm -rf /usr/share/davical/.git /usr/share/awl/.git/ \
         && apk del git \
