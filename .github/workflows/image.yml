@@ -39,7 +39,7 @@ jobs:
           push: true
           tags: |
             tuxnvape/davical-standalone:latest
-            tuxnvape/davical-standalone:8-1.1.10
+            tuxnvape/davical-standalone:8-1.1.11
  
             
       - name: Build and push php81 version
@@ -51,4 +51,4 @@ jobs:
           push: true
           tags: |
             tuxnvape/davical-standalone:latest
-            tuxnvape/davical-standalone:81-1.1.10
+            tuxnvape/davical-standalone:81-1.1.11
