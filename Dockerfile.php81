@@ -28,11 +28,6 @@ RUN apk add --no-cache \
 
 RUN apk --update add icu-libs
 
-RUN ln -s /usr/lib/libicudata.so.72 /usr/lib/libicudata.so.71
-RUN ln -s /usr/lib/libicui18n.so.72 /usr/lib/libicui18n.so.71
-RUN ln -s /usr/lib/libicuio.so.72 /usr/lib/libicuio.so.71
-RUN ln -s /usr/lib/libicuuc.so.72 /usr/lib/libicuuc.so.71
-
 # apk
 RUN     apk --update add \
         sudo \
