@@ -9,22 +9,21 @@ It contains docker-compose config example.
 List of supported clients: Mozilla Thunderbird/Lightning, Evolution, Mulberry, Chandler, iCal, ...
 
 **Features**
-  >  -  DAViCal is Free Software licensed under the General Public License.
-  >  -  uses an PGSQL database for storage of event data
-  >  -  supports backward-compatible access via WebDAV in read-only or read-write mode (not recommended)
-  >  -  is committed to inter-operation with the widest possible CalDAV client software.
+  - DAViCal is Free Software licensed under the General Public License.
+  - uses an PGSQL database for storage of event data
+  - supports backward-compatible access via WebDAV in read-only or read-write mode (not recommended)
+  - is committed to inter-operation with the widest possible CalDAV client software.
 
-  >DAViCal supports basic delegation of read/write access among calendar users, multiple users or clients reading and writing the same calendar entries over time, and scheduling of meetings with free/busy time displayed.
+DAViCal supports basic delegation of read/write access among calendar users, multiple users or clients reading and writing the same calendar entries over time, and scheduling of meetings with free/busy time displayed.
 (*https://www.davical.org/*)
 
 ## Settings Added
--  Exposed Ports: TCP 80 and TCP 443
--  Exposed Volumes: /config and /var/lib/postgresql/data/
+- Exposed Ports: TCP 80 and TCP 443
+- Exposed Volumes: /config and /var/lib/postgresql/data/
 
 ## Multilanguage Support for Interface
->  -  DAVICAL_LANG is here for this
->  -  Diffrents values for languages: en, ar, de_DE, es_AR, es_ES, es_MX, es_VE, et_EE, fe_FI, fr_FR, hu_HU, it_IT, ja_JP, ko_KR, nb_NO, nl_NL, pl_PL, pt_BR, pt_PT, ru_RU, sk_SK, sv_SE
+- DAVICAL_LANG is here for this
+- Diffrents values for languages: en, ar, de_DE, es_AR, es_ES, es_MX, es_VE, et_EE, fe_FI, fr_FR, hu_HU, it_IT, ja_JP, ko_KR, nb_NO, nl_NL, pl_PL, pt_BR, pt_PT, ru_RU, sk_SK, sv_SE
 
 ## Multi Architecture Support
 You can use it in ARM, ARM64 and AMD64
-
