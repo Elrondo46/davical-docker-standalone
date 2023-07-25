@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 #SET THE TIMEZONE
