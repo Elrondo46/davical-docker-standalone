@@ -31,8 +31,8 @@ if [[ -z "$INITIALIZED_DB" ]]; then
     PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c "ALTER USER davical_app WITH PASSWORD '$PASSDAVDB';"
     PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT ALL PRIVILEGES ON DATABASE davical TO davical_dba;'
     PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT ALL PRIVILEGES ON DATABASE davical TO davical_app;'
-    PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT ALL ON SCHEMA public TO davical_dba;'
-    PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT ALL ON SCHEMA public TO davical_app;'
+    PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'ALTER DATABASE davical OWNER TO davical_dba;'
+    PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT USAGE, CREATE ON SCHEMA PUBLIC TO davical_dba;'
     PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c 'ALTER USER davical_dba WITH LOGIN;'
     PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c 'ALTER USER davical_app WITH LOGIN;'
     PGPASSWORD="$PASSDAVDB" /usr/bin/psql -qXAt -U davical_dba -h "$DBHOST" davical < /usr/share/awl/dba/awl-tables.sql
@@ -46,8 +46,8 @@ else
     PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c "ALTER USER davical_app WITH PASSWORD '$PASSDAVDB';"
     PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT ALL PRIVILEGES ON DATABASE davical TO davical_dba;'
     PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT ALL PRIVILEGES ON DATABASE davical TO davical_app;'
-    PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT ALL ON SCHEMA public TO davical_dba;'
-    PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT ALL ON SCHEMA public TO davical_app;'
+    PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'ALTER DATABASE davical OWNER TO davical_dba;'
+    PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'GRANT USAGE, CREATE ON SCHEMA PUBLIC TO davical_dba;'
     PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c 'ALTER USER davical_dba WITH LOGIN;'
     PGPASSWORD=$PGSQL_ROOT_PASS /usr/bin/psql -qX -U postgres -h $DBHOST -c 'ALTER USER davical_app WITH LOGIN;'
     PGPASSWORD="$PASSDAVDB" /usr/bin/psql davical -qX -U davical_dba -h "$DBHOST" -c "UPDATE usr SET password = '**$ADMINDAVICALPASS' WHERE user_no = 1;"
