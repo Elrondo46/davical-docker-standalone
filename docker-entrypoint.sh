@@ -56,7 +56,7 @@ fi
 #UPDATE ALWAYS THE DATABASE
 sleep 3
 
-/usr/share/davical/dba/update-davical-database --dbname davical --dbuser davical_dba --dbhost "$DBHOST" --dbpass "$PASSDAVDB" --appuser davical_app --nopatch --owner davical_dba
+/usr/share/davical/dba/update-davical-database --dbname davical --dbuser davical_dba --dbhost "$DBHOST" --dbpass "$PASSDAVDB" --appuser davical_app --owner davical_dba
 
 #LAUNCH THE INIT PROCESS
 exec /usr/sbin/httpd -e error -E /var/log/apache2/apache-start.log -DFOREGROUND
