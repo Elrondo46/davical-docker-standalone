@@ -22,6 +22,9 @@ chmod u+rwx,g+rx /config/davical.php
 sleep 15
 /usr/bin/pg_isready -U postgres -h "$DBHOST" -t 2000
 
+#UPDATING FROM OLD VERSION OR NOT
+UPDATE_FROM_OLD=false
+
 INITIALIZED_DB=$(PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -l | grep davical)
 if [[ -z "$INITIALIZED_DB" ]]; then
     PGPASSWORD="$PGSQL_ROOT_PASS" /usr/bin/psql -qX -U postgres -h "$DBHOST" -c 'CREATE DATABASE davical;'
@@ -56,7 +59,12 @@ fi
 #UPDATE ALWAYS THE DATABASE
 sleep 3
 
-/usr/share/davical/dba/update-davical-database --dbname davical --dbuser davical_dba --dbhost "$DBHOST" --dbpass "$PASSDAVDB" --appuser davical_app --nopatch --owner davical_dba
+#CHECK UPDATING STATUS
+if [[ "$UPDATE_FROM_OLD" = true ]]; then
+    /usr/share/davical/dba/update-davical-database --dbname davical --dbuser davical_dba --dbhost "$DBHOST" --dbpass "$PASSDAVDB" --appuser davical_app --owner davical_dba
+else
+    /usr/share/davical/dba/update-davical-database --dbname davical --dbuser davical_dba --dbhost "$DBHOST" --dbpass "$PASSDAVDB" --appuser davical_app --nopatch --owner davical_dba
+fi
 
 #LAUNCH THE INIT PROCESS
 exec /usr/sbin/httpd -e error -E /var/log/apache2/apache-start.log -DFOREGROUND

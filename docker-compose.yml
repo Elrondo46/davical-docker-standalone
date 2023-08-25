@@ -25,6 +25,7 @@ services:
       LANG: "fr_FR.UTF-8"
       LC_ALL: "fr_FR.UTF-8"
       DAVICAL_LANG: "fr_FR"
+      UPDATE_FROM_OLD: "false"
 volumes:
   davical_config:
   pgsql_data:
