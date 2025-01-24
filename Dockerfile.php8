@@ -9,6 +9,7 @@ ENV     PASSDAVDB "davical"
 ENV     PGSQL_ROOT_PASS "davical"
 ENV     ADMINDAVICALPASS "davical" 
 
+
 # config files, shell scripts
 COPY    docker-entrypoint.sh /sbin/docker-entrypoint.sh
 COPY    apache.conf /config/apache.conf
