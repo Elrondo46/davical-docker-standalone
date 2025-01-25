@@ -15,8 +15,8 @@ COPY    apache.conf /config/apache.conf
 COPY    davical.php /config/davical.php
 COPY    rsyslog.conf /config/rsyslog.conf
 
-ENV MUSL_LOCALE_DEPS=cmake make musl-dev gcc gettext-dev libintl
-ENV MUSL_LOCPATH=/usr/share/i18n/locales/musl
+ENV MUSL_LOCALE_DEPS="cmake make musl-dev gcc gettext-dev libintl"
+ENV MUSL_LOCPATH="/usr/share/i18n/locales/musl"
 #RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 RUN apk add --no-cache \
     $MUSL_LOCALE_DEPS \
