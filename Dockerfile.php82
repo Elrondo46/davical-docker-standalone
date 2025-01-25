@@ -1,13 +1,13 @@
 FROM    alpine:3.19.1
-MAINTAINER https://github.com/Elrondo46
+LABEL org.opencontainers.image.authors="elrond94@hotmail.com"
 
-ENV     TIME_ZONE "Europe/Paris"
-ENV     HOST_NAME "davical.example"
-ENV     LANG      "en_US.UTF-8"
-ENV     DBHOST "db"
-ENV     PASSDAVDB "davical"
-ENV     PGSQL_ROOT_PASS "davical"
-ENV     ADMINDAVICALPASS "davical" 
+ENV TIME_ZONE=Europe/Paris
+ENV HOST_NAME=davical.example
+ENV LANG=en_US.UTF-8
+ENV DBHOST=db
+ENV PASSDAVDB=davical
+ENV PGSQL_ROOT_PASS=davical
+ENV ADMINDAVICALPASS=davical 
 
 # config files, shell scripts
 COPY    docker-entrypoint.sh /sbin/docker-entrypoint.sh
@@ -15,8 +15,8 @@ COPY    apache.conf /config/apache.conf
 COPY    davical.php /config/davical.php
 COPY    rsyslog.conf /config/rsyslog.conf
 
-ENV MUSL_LOCALE_DEPS cmake make musl-dev gcc gettext-dev libintl
-ENV MUSL_LOCPATH /usr/share/i18n/locales/musl
+ENV MUSL_LOCALE_DEPS=cmake make musl-dev gcc gettext-dev libintl
+ENV MUSL_LOCPATH=/usr/share/i18n/locales/musl
 #RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 RUN apk add --no-cache \
     $MUSL_LOCALE_DEPS \
