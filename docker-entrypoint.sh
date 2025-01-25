@@ -59,12 +59,8 @@ fi
 #UPDATE ALWAYS THE DATABASE
 sleep 3
 
-#CHECK UPDATING STATUS
-if [[ "$UPDATE_FROM_OLD" = true ]]; then
+#UPDATE SCHEMA
     /usr/share/davical/dba/update-davical-database --dbname davical --dbuser davical_dba --dbhost "$DBHOST" --dbpass "$PASSDAVDB" --appuser davical_app --owner davical_dba
-else
-    /usr/share/davical/dba/update-davical-database --dbname davical --dbuser davical_dba --dbhost "$DBHOST" --dbpass "$PASSDAVDB" --appuser davical_app --nopatch --owner davical_dba
-fi
 
 #LAUNCH THE INIT PROCESS
 exec /usr/sbin/httpd -e error -E /var/log/apache2/apache-start.log -DFOREGROUND
